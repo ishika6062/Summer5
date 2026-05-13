@@ -16,9 +16,16 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 4000;
-const clientOrigin = process.env.CLIENT_ORIGIN || "https://summer5-six.vercel.app";
+// Normalize origin to avoid trailing slash mismatches (preflight checks are strict)
+const clientOrigin = (process.env.CLIENT_ORIGIN || "https://summer5-six.vercel.app")
+  .replace(/\/$/, "");
 
-app.use(cors({ origin: clientOrigin }));
+app.use(
+  cors({
+    origin: clientOrigin,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(passport.initialize());
 

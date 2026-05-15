@@ -64,7 +64,7 @@ const Index = () => {
               <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none" />
               <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none" />
               <div className="flex marquee-track">
-                {[...products, ...products].map((product, index) => (
+                {[...products.slice(0,6), ...products.slice(0,6)].map((product, index) => (
                   <div key={`${product.id}-${index}`} className="mx-3 w-[240px] shrink-0">
                     <ProductCard product={product} showMeta={false} />
                   </div>
